@@ -1,0 +1,60 @@
+1.Threads are set of instruction that is executed in a defined order and
+independent of other threads.
+
+2.Main methods starts a main thread , every java application has atleast one thread.
+
+3.Thread can have a well defined end.
+
+4.There will be always a deltaT with starting of other thread from the main thread.
+
+5.Execution of the thread can not be determined easily considering you have not applied any synchronize block or any logic to
+alter execution of the thread.
+
+6.Run is the main method of the thread .
+
+Threads state:
+    When the thread object is created with new keyword it will go into the start state.
+    When we call the start() method on the instance the thread will go into the runnable state.
+    Now from runnable state the JVM takes the thread to running state depends on the resource availability and
+    if sleep method is called upon the thread JVM takes it to the blocked state after the sleep time ends the jvm will
+    take it to the runnable state and again the running state . The lifecycle continues till all the statements are executed
+    ,If the execution is done the thread will go to the dead state. During the sleep also if another thread stop or interrupts
+    it the thread can go to dead state.
+
+7.One important note is that synchronized block does not decide how much time a thread
+  will be in the block it is decided by JVM when the context switch will happen.
+
+8. Try , sleep and join make a thread in a blocking state.
+9. for a Synchronized syntax like this ->
+        public synchronized void b(){} it is similar to public void c(){ synchronized(this) {} }
+    so it means if we add the keyword synchronized in the method signature this will
+    automatically make the class(this) as the monitor.
+10. When we add synchronized keyword to the static method the monitor will be the class itself. Basically what
+    happens under the hood is that jvm creates an object or instance of the blueprint which is the class and
+    the class will be in the special memory area called permanent generation area.
+    e.g. public synchronized void method(){}
+11. Race condition - The condition when multiple threads try to acquire the same shared
+resource and which results in data inconsistency.
+
+12. Executor interface is the root interface of the Executor functionality.
+13. Executors are the utility class which is used to create the ExecutorService.
+14. ThreadPool -> It is a collection of threads which is used to execute the tasks.
+What ThreadPool mitigates is that you dont need to manage the threads by yourself
+all the things will be done by ThreadPool (i.e creation and mangement) you just need
+to throw the tasks and it will get the work done.
+
+15. There are two methods to shutdown the ExecutorService one is shutdown() and the other
+is shutdownNow() the basic difference is the shutdown will wait for the tasks to get
+completed and shutdownNow without completing the task closes all the tasks.
+
+16. There is also one more method to execute the task using the executor service which is submit , there are three
+overloadings of the submit method and it basically returns a value and that value can be taken as Future<?> and the
+question mark means the wildcard type i.e. we dont know the type of value it returns.
+17.Shutdown the executor service when the work is done otherwise it will keep the
+program running by keeping the thread alive.
+
+18. ScheduledExecutorService this one of the other type of ExecutorService which basically
+schedules the task after a given interval.
+
+19. Future<?> will get the status of the task whether it is executed or not or it has thrown an exception.
+20. Future can something you can say that when you put a task into a pool you will get it immediately .
